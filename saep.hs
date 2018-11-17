@@ -14,17 +14,12 @@ myKeyboard = KeyBoard
   [ Layer INSERT insertLeft insertRight
   , Layer GAME gameLeft gameRight
   , Layer MOUSE mouseLeft mouseRight
-  , Layer XMONAD insertLeft insertRight
-  , Layer NUMPAREN insertLeft insertRight
-  , Layer NORMAL insertLeft insertRight
+  , Layer XMONAD xmonadLeft xmonadRight
+  , Layer NUMPAREN numParenLeft numParenRight
+  , Layer NORMAL normalLeft normalRight
   , Layer FUNCTION insertLeft insertRight
   ]
 
---  [4] = LAYOUT_ergodox(KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_NO,KC_TAB,KC_EXLM,KC_AT,KC_HASH,KC_DLR,KC_PERC,KC_TRANSPARENT,OSM(MOD_LCTL),KC_1,KC_2,KC_3,KC_4,KC_5,KC_LSHIFT,KC_LPRN,KC_RPRN,KC_LBRACKET,KC_RBRACKET,KC_QUOTE,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_SPACE,TO(0),KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_CIRC,KC_AMPR,KC_KP_ASTERISK,KC_GRAVE,KC_TILD,KC_PIPE,KC_6,KC_7,KC_8,KC_9,KC_0,KC_ENTER,KC_TRANSPARENT,KC_DQUO,KC_LCBR,KC_RCBR,KC_LABK,KC_RABK,KC_RSHIFT,KC_BSPACE,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,TO(1),KC_SPACE),
---
---  [5] = LAYOUT_ergodox(KC_TRANSPARENT,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_F6,KC_TAB,KC_TRANSPARENT,LCTL(KC_RIGHT),LCTL(KC_RIGHT),KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_LCTRL,KC_HOME,KC_TRANSPARENT,LCTL(KC_X),KC_END,KC_TRANSPARENT,KC_LSHIFT,KC_TRANSPARENT,KC_DELETE,KC_TRANSPARENT,KC_TRANSPARENT,LCTL(KC_LEFT),KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_LALT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,GUI_T(KC_SPACE),KC_TRANSPARENT,KC_TRANSPARENT,KC_F7,KC_F8,KC_F9,KC_F10,KC_F11,KC_F12,KC_TRANSPARENT,KC_TRANSPARENT,LCTL(KC_C),LCTL(KC_Z),KC_TRANSPARENT,KC_TRANSPARENT,LCTL(KC_V),KC_TRANSPARENT,KC_LEFT,KC_DOWN,KC_UP,KC_RIGHT,KC_TRANSPARENT,RCTL_T(KC_ENTER),KC_TRANSPARENT,KC_F3,KC_PGUP,LALT(KC_LEFT),LALT(KC_RIGHT),KC_F3,KC_RSHIFT,KC_PGDOWN,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,GUI_T(KC_SPACE)),
---
---  [6] = LAYOUT_ergodox(KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,TO(0),KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_F9,KC_F10,KC_F11,KC_F12,KC_TRANSPARENT,KC_TRANSPARENT,KC_F5,KC_F6,KC_F7,KC_F8,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_F1,KC_F2,KC_F3,KC_F4,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT),
 
 no = Row NO NO NO NO NO
 oneToFive = Row "1" "2" "3" "4" "5"
@@ -34,13 +29,15 @@ aToG = Row "A" "S" "D" "F" "G"
 yToP = Row "Y" "U" "I" "O" "P"
 nToSlash = Row "N" "M" "COMMA" "DOT" "SLASH"
 zToB = Row "Z" "X" "C" "V" "B"
+f1tof5 = Row "F1" "F2" "F3" "F4" "F5"
+f8tof12 = Row "F8" "F9" "F10" "F11" "F12"
 
 insertLeft = Side
   { wide = Wide (TG MOUSE) "TAB" "LCTRL" "LSPO"
   , inner = Inner "MS_BTN1" (Raw "LGUI(KC_F1)") (Raw "LGUI(KC_F2)")
-  , thumbKeys = ThumbLeft       (LCTL "X")           (LCTL "C")
+  , thumbKeys = ThumbLeft           (LCTL "X")       (LCTL "C")
                                                      (LCTL "V")
-                (GUI_T "SPACE") (LT NORMAL "ESCAPE") (TT XMONAD)
+                (LT NORMAL "SPACE") (GUI_T "ESCAPE") (TT XMONAD)
   , rows = Rows oneToFive
                 qToT
                 (Row "A" "S" "D" (LT FUNCTION "F") (LT MOUSE "G"))
@@ -53,7 +50,7 @@ insertRight = Side
   , inner = Inner NO (LGUI "P") (TG GAME)
   , thumbKeys = ThumbRight (LALT "LEFT") (LALT "RIGHT")
                            "PGUP"
-                           "PGDOWN"      (LT NORMAL "LBRACKET") (GUI_T "RBRACKET")
+                           "PGDOWN"      (GUI_T "LBRACKET") (LT NORMAL "RBRACKET")
   , rows = Rows sixToZero
                 yToP
                 (Row "H" "J" "K" "L" (LT MOUSE "SCOLON"))
@@ -61,7 +58,7 @@ insertRight = Side
                 (Row (Raw "ALGR_T(KC_BSPACE)") (LT NUMPAREN "EQUAL") "MINUS" NO "APPLICATION")
   }
 
-gameLeft = Side
+RIGHTgameLeft = Side
   { wide = Wide "GRAVE" "TAB" "LCTRL" "LSHIFT"
   , inner = Inner "6" NO "ESCAPE"
   , thumbKeys = ThumbLeft (LCTL "X") (LCTL "C")
@@ -79,11 +76,11 @@ gameRight = insertRight
   }
 
 mouseLeft = Side
-  { wide = Wide TP TP TP "LSHIFT"
+  { wide = Wide TP "TAB" "LCTRL" "LSHIFT"
   , inner = Inner TP TP TP
-  , thumbKeys = ThumbLeft               (LCTL "X")  (LCTL "C")
-                                                    (LCTL "V")
-                (Raw "GUI_T(KC_SPACE)") (TO INSERT) (MO XMONAD)
+  , thumbKeys = ThumbLeft           (LCTL "X")  (LCTL "C")
+                                                (LCTL "V")
+                (LT NORMAL "SPACE") (TO INSERT) (MO XMONAD)
   , rows = Rows no
                 (Row "MS_BTN1" "MS_UP" "MS_BTN2" "MS_WH_UP" TP)
                 (Row "LCTRL" "MS_LEFT" "MS_DOWN" "MS_RIGHT" "MS_WH_DOWN")
@@ -105,11 +102,11 @@ mouseRight = Side
   }
 
 xmonadLeft = Side
-  { wide = Wide (TO MOUSE) (LGUI "Tab") "LCTRL" "LSHIFT"
+  { wide = Wide (TO MOUSE) (LGUI "TAB") "LCTRL" "LSHIFT"
   , inner = inner insertLeft
   , thumbKeys = ThumbLeft      NO          NO
                                            NO
-                (LGUI "SPACE") (TO INSERT) TP
+                (LT NORMAL "SPACE") (TO INSERT) TP
   , rows = Rows no
                 (Row (LGUI "Q") (LGUI "W") (LGUI "E") NO (LGUI "T"))
                 (Row (LGUI "1") (LGUI "2") (LGUI "3") (LGUI "4") (LGUI "5"))
@@ -118,7 +115,7 @@ xmonadLeft = Side
   }
 
 xmonadRight = Side
-  { wide = wide insertRight
+  { wide = Wide (TO MOUSE) "TAB" "LCTRL" "LSHIFT"
   , inner = Inner NO (LGUI "F4") (LGUI "F3")
   , thumbKeys = ThumbRight (LGUI "LEFT") (LGUI "RIGHT")
                            (LGUI "UP")
@@ -130,6 +127,65 @@ xmonadRight = Side
                 (Row (LGUI "SPACE") NO NO NO NO)
   }
 
+numParenLeft = Side
+  { wide = Wide (TO MOUSE) "TAB" "LCTRL" "LSHIFT"
+  , inner = Inner NO NO NO
+  , thumbKeys = ThumbLeft           NO          NO
+                                                NO
+                (LT NORMAL "SPACE") (TO INSERT) TP
+  , rows = Rows no
+                (Row "EXLM" "AT" "HASH" "DLR" "PERC")
+                oneToFive
+                (Row "LPRN" "RPRN" "LBRACKET" "RBRACKET" "QUOTE")
+                (Row NO NO NO TP NO)
+  }
+
+numParenRight = Side
+  { wide = wide insertRight
+  , inner = Inner NO NO NO
+  , thumbKeys = thumbKeys insertRight
+  , rows = Rows no
+                (Row "CIRC" "AMPR" "ASTERISK" "GRAVE" "TILD")
+                sixToZero
+                (Row "DQUO" "LCBR" "RCBR" "LABK" "RABK")
+                (Row "BSPACE" NO NO NO NO)
+  }
+
+normalLeft = Side
+  { wide = Wide NO "TAB" "LCTRL" "LSHIFT"
+  , inner = Inner "F6" NO NO
+  , thumbKeys = thumbKeys numParenLeft
+  , rows = Rows f1tof5
+                (Row NO (LCTL "LEFT") (LCTL "RIGHT") NO NO)
+                (Row "HOME" NO (LCTL "X") "END" NO)
+                (Row NO "DELETE" NO NO (LCTL "LEFT"))
+                (Row NO NO NO NO "LALT")
+  }
+
+normalRight = Side
+  { wide = wide  insertRight
+  , inner = Inner "F7" NO NO
+  , thumbKeys = ThumbRight (LALT "LEFT") (LALT "RIGHT")
+                           "PGUP"
+                           "PGDOWN"      (GUI_T "LBRACKET") TP
+  , rows = Rows f8tof12
+                (Row (LCTL "C") (LCTL "Z") NO NO (LCTL "V"))
+                (Row "LEFT" "DOWN" "UP" "RIGHT" NO)
+                (Row "F3" "PGUP" (LALT "LEFT") (LALT "RIGHT") "F3")
+                (Row "PGDN" NO NO NO NO)
+  }
+
+functionLeft = let t = mapRow (const TP) in numParenLeft
+  { rows = mapRows t t t t t (rows numParenLeft)
+  }
+
+functionRight = numParenRight
+  { rows = Rows no
+                (Row NO "F9" "F10" "F11" "F12")
+                (Row NO "F5" "F6" "F7" "F8")
+                (Row NO "F1" "F2" "F3" "F4")
+                no
+  }
 
 data KeyBoard = KeyBoard [Layer]
 
@@ -201,6 +257,12 @@ data Row = Row K K K K K
 
 instance Keymap Row where
   gen (Row r1 r2 r3 r4 r5) = [r1,r2,r3,r4,r5]
+
+mapRow :: (K -> K) -> Row -> Row
+mapRow f (Row k1 k2 k3 k4 k5) = Row (f k1) (f k2) (f k3) (f k4) (f k5)
+
+mapRows :: (Row -> Row) -> (Row -> Row) -> (Row -> Row) -> (Row -> Row) -> (Row -> Row) -> Rows -> Rows
+mapRows f1 f2 f3 f4 f5 (Rows r1 r2 r3 r4 r5) = Rows (f1 r1) (f2 r2) (f3 r3) (f4 r4) (f5 r5)
 
 data Rows = Rows Row Row Row Row Row
 
