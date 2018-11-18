@@ -33,8 +33,8 @@ f1tof5 = Row "F1" "F2" "F3" "F4" "F5"
 f8tof12 = Row "F8" "F9" "F10" "F11" "F12"
 
 insertLeft = Side
-  { wide = Wide (TG MOUSE) "TAB" "LCTRL" "LSPO"
-  , inner = Inner "MS_BTN1" (Raw "LGUI(KC_F1)") (Raw "LGUI(KC_F2)")
+  { wide = Wide (TG MOUSE) "TAB" "LCTRL" "LSHIFT"
+  , inner = Inner (Raw "DYN_MACRO_PLAY1") (Raw "LGUI(KC_F1)") (Raw "LGUI(KC_F2)")
   , thumbKeys = ThumbLeft           (LCTL "X")       (LCTL "C")
                                                      (LCTL "V")
                 (LT NORMAL "SPACE") (GUI_T "ESCAPE") (TT XMONAD)
@@ -46,8 +46,8 @@ insertLeft = Side
   }
 
 insertRight = Side
-  { wide = Wide "BSPACE" "BSLASH" (Raw "RCTL_T(KC_ENTER)") "RSPC"
-  , inner = Inner NO (LGUI "P") (TG GAME)
+  { wide = Wide "BSPACE" "BSLASH" (Raw "RCTL_T(KC_ENTER)") "RSHIFT"
+  , inner = Inner (Raw "DYN_MACRO_PLAY1") (LGUI "P") (TG GAME)
   , thumbKeys = ThumbRight (LALT "LEFT") (LALT "RIGHT")
                            "PGUP"
                            "PGDOWN"      (GUI_T "LBRACKET") (LT NORMAL "RBRACKET")
@@ -55,10 +55,10 @@ insertRight = Side
                 yToP
                 (Row "H" "J" "K" "L" (LT MOUSE "SCOLON"))
                 nToSlash
-                (Row (Raw "ALGR_T(KC_BSPACE)") (LT NUMPAREN "EQUAL") "MINUS" NO "APPLICATION")
+                (Row (Raw "ALGR_T(KC_BSPACE)") (LT NUMPAREN "EQUAL") "MINUS" (Raw "DYN_REC_STOP") "APPLICATION")
   }
 
-RIGHTgameLeft = Side
+gameLeft = Side
   { wide = Wide "GRAVE" "TAB" "LCTRL" "LSHIFT"
   , inner = Inner "6" NO "ESCAPE"
   , thumbKeys = ThumbLeft (LCTL "X") (LCTL "C")
@@ -83,7 +83,7 @@ mouseLeft = Side
                 (LT NORMAL "SPACE") (TO INSERT) (MO XMONAD)
   , rows = Rows no
                 (Row "MS_BTN1" "MS_UP" "MS_BTN2" "MS_WH_UP" TP)
-                (Row "LCTRL" "MS_LEFT" "MS_DOWN" "MS_RIGHT" "MS_WH_DOWN")
+                (Row "MS_LEFT" "MS_DOWN" "MS_RIGHT" "MS_WH_DOWN" NO)
                 (Row "MS_BTN4" "MS_BTN3" "MS_BTN5" TP TP)
                 (Row TP TP TP (TO NUMPAREN) "LALT")
   }
@@ -129,7 +129,7 @@ xmonadRight = Side
 
 numParenLeft = Side
   { wide = Wide (TO MOUSE) "TAB" "LCTRL" "LSHIFT"
-  , inner = Inner NO NO NO
+  , inner = Inner (Raw "DYN_REC_START1") NO NO
   , thumbKeys = ThumbLeft           NO          NO
                                                 NO
                 (LT NORMAL "SPACE") (TO INSERT) TP
@@ -142,7 +142,7 @@ numParenLeft = Side
 
 numParenRight = Side
   { wide = wide insertRight
-  , inner = Inner NO NO NO
+  , inner = Inner (Raw "DYN_REC_START2") NO NO
   , thumbKeys = thumbKeys insertRight
   , rows = Rows no
                 (Row "CIRC" "AMPR" "ASTERISK" "GRAVE" "TILD")
