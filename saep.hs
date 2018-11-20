@@ -17,7 +17,7 @@ myKeyboard = KeyBoard
   , Layer XMONAD xmonadLeft xmonadRight
   , Layer NUMPAREN numParenLeft numParenRight
   , Layer NORMAL normalLeft normalRight
-  , Layer FUNCTION insertLeft insertRight
+  , Layer FUNCTION functionLeft functionRight
   ]
 
 
@@ -47,7 +47,7 @@ insertLeft = Side
 
 insertRight = Side
   { wide = Wide "BSPACE" "BSLASH" (Raw "RCTL_T(KC_ENTER)") "RSHIFT"
-  , inner = Inner (Raw "DYN_MACRO_PLAY1") (LGUI "P") (TG GAME)
+  , inner = Inner (Raw "DYN_MACRO_PLAY2") (LGUI "P") (TG GAME)
   , thumbKeys = ThumbRight (LALT "LEFT") (LALT "RIGHT")
                            "PGUP"
                            "PGDOWN"      (GUI_T "LBRACKET") (LT NORMAL "RBRACKET")
@@ -143,7 +143,9 @@ numParenLeft = Side
 numParenRight = Side
   { wide = wide insertRight
   , inner = Inner (Raw "DYN_REC_START2") NO NO
-  , thumbKeys = thumbKeys insertRight
+  , thumbKeys = ThumbRight TP TP
+                           "PGUP"
+                           "PGDN" "LPRN" "RPRN"
   , rows = Rows no
                 (Row "CIRC" "AMPR" "ASTERISK" "GRAVE" "TILD")
                 sixToZero
