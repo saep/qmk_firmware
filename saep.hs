@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-12.16 --no-nix-pure script
+-- stack --resolver lts-12.25 --no-nix-pure script
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.String
