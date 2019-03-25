@@ -1,14 +1,15 @@
 #!/usr/bin/env stack
--- stack --resolver lts-13.12 --no-nix-pure script
+-- stack --resolver lts-13.14 --no-nix-pure script
+-- -package shake -package rio
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NoImplicitPrelude #-}
 
+import RIO hiding (Ordering(..))
 import Data.String
 import Development.Shake
-import qualified Data.List as List
-import Data.Map.Strict (Map)
-import qualified Data.Map.Strict as Map
-
-import Prelude hiding (Ordering(..))
+import qualified RIO.List as List
+import qualified RIO.Map as Map
+import qualified RIO.Map as Map
 
 myKeyboard = KeyBoard
   [ Layer INSERT insertLeft insertRight
@@ -218,9 +219,11 @@ data K = Raw String
 instance IsString K where
   fromString = KeyCode
 
+(!) m k = maybe (error "!") id $ m Map.!? k
+
 toKeyCode :: Map LayerId String -> K -> String
 toKeyCode layerIds k =
-  let lid l = layerIds Map.! l
+  let lid l = layerIds ! l
       f n as = n ++ "(" ++ List.intercalate "," as ++ ")"
       r = toKeyCode layerIds
   in case k of
@@ -295,7 +298,7 @@ instance Keymap Side where
         mkRow mw r mi = case thumbKeys of
           ThumbLeft{}  -> m mw ++ r ++ m mi
           ThumbRight{} -> m mi ++ r ++ m mw
-        fingers = concat $ zipWith3 mkRow
+        fingers = concat $ List.zipWith3 mkRow
                     [Just w1, Just w2, Just w3, Just w4, Nothing]
                     (map gen [r1,r2,r3,r4,r5])
                     [Just i1, Just i2, Nothing, Just i3, Nothing]
@@ -323,14 +326,14 @@ main = shakeArgs shakeOptions $ do
 
 generateMatrix (KeyBoard layers) =
     [ "const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {"
-    , foldl go "" layers
+    , foldl' go "" layers
     , "};"
     ]
   where
     layerIds = Map.fromList $ zip (map layerId layers) (map show [0..])
     go :: String -> Layer -> String
     go ls l =
-      ls ++ "[" ++ (layerIds Map.! layerId l) ++ "] = LAYOUT_ergodox("
+      ls ++ "[" ++ (layerIds ! layerId l) ++ "] = LAYOUT_ergodox("
       ++ List.intercalate "," (map (toKeyCode layerIds) (gen l))
       ++ "),\n\n"
 
