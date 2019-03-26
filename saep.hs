@@ -34,7 +34,7 @@ f1tof5 = Row "F1" "F2" "F3" "F4" "F5"
 f8tof12 = Row "F8" "F9" "F10" "F11" "F12"
 
 insertLeft = Side
-  { wide = Wide (TG MOUSE) "TAB" "LCTRL" "LSPO"
+  { wide = Wide (TG MOUSE) "TAB" "LCTRL" "LSHIFT"
   , inner = Inner (Raw "DYN_MACRO_PLAY1") (Raw "LGUI(KC_F1)") (Raw "LGUI(KC_F2)")
   , thumbKeys = ThumbLeft           (LCTL "X")       (LCTL "C")
                                                      (LCTL "V")
@@ -47,7 +47,7 @@ insertLeft = Side
   }
 
 insertRight = Side
-  { wide = Wide "BSPACE" "BSLASH" (Raw "RCTL_T(KC_ENTER)") "RSPC"
+  { wide = Wide "BSPACE" "BSLASH" (Raw "RCTL_T(KC_ENTER)") "RSHIFT"
   , inner = Inner (Raw "DYN_MACRO_PLAY2") (LGUI "P") (TG GAME)
   , thumbKeys = ThumbRight (LALT "LEFT") (LALT "RIGHT")
                            "PGUP"
