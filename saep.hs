@@ -58,7 +58,7 @@ insertLeft = Side
         qToT
         (Row "A" "S" "D" (LT FUNCTION "F") (LT MOUSE "G"))
         zToB
-        (Row (Raw "LCTL(KC_LSHIFT)") NO "UNDS" (LT NUMPAREN "GRAVE") (Raw "ALT_T(KC_QUOTE)"))
+        (Row (Raw "LCTL(KC_LSHIFT)") NO "UNDS" (MO NUMPAREN) "LALT")
   }
 
 insertRight = Side
@@ -78,7 +78,7 @@ insertRight = Side
         yToP
         (Row "H" "J" "K" "L" (LT MOUSE "SCOLON"))
         nToSlash
-        (Row (Raw "ALGR_T(KC_BSPACE)") (LT NUMPAREN "EQUAL") (LT FUNCTION "MINUS") (Raw "DYN_REC_STOP") "APPLICATION")
+        (Row (Raw "ALGR_T(KC_BSPACE)") (MO NUMPAREN) (LT FUNCTION "MINUS") (Raw "DYN_REC_STOP") "APPLICATION")
   }
 
 gameLeft = Side
@@ -162,7 +162,7 @@ numParenLeft = Side
         no
         (Row "EXLM" "AT" "HASH" "DLR" "PERC")
         oneToFive
-        (Row "LPRN" "RPRN" "LBRACKET" "RBRACKET" "QUOTE")
+        (Row "MINUS" "PLUS" "GRAVE" "DQUO" NO)
         (Row NO NO NO TP NO)
   }
 
@@ -182,7 +182,7 @@ numParenRight = Side
         no
         (Row "CIRC" "AMPR" "ASTERISK" "GRAVE" "TILD")
         sixToZero
-        (Row "DQUO" "LCBR" "RCBR" "LABK" "RABK")
+        (Row NO "QUOTE" NO "EQUAL" "UNDS")
         (Row "BSPACE" NO NO NO NO)
   }
 
