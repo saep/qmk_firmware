@@ -294,11 +294,16 @@ data K
   | KeyCode String
   | NO
   | TP
-  | TG LayerId
-  | TT LayerId
-  | TO LayerId
-  | MO LayerId
-  | LT LayerId K
+  | -- | Toggle
+    TG LayerId
+  | -- | Toggle or hold
+    TT LayerId
+  | -- | switch
+    TO LayerId
+  | -- | hold
+    MO LayerId
+  | -- | hold layer - tap K
+    LT LayerId K
   | LCTL K
   | LGUI K
   | LALT K
