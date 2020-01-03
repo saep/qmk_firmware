@@ -372,7 +372,7 @@ main = shakeArgs shakeOptions $ do
     writeFileLines generated $ generateMatrix myKeyboard
   compiledWithMake %> \out -> do
     need [generated]
-    cmd ("make" :: String) ["ergodox_ez:saep" :: String]
+    cmd ("nix-shell" :: String) ["--command", "make ergodox_ez:saep" :: String]
 
 generateMatrix (KeyBoard layers) =
   [ "const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {",
