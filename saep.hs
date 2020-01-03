@@ -78,7 +78,7 @@ insertRight = Side
         yToP
         (Row "H" "J" "K" "L" (LT MOUSE "SCOLON"))
         nToSlash
-        (Row (Raw "ALGR_T(KC_BSPACE)") (LT NUMPAREN "EQUAL") "MINUS" (Raw "DYN_REC_STOP") "APPLICATION")
+        (Row (Raw "ALGR_T(KC_BSPACE)") (LT NUMPAREN "EQUAL") (LT FUNCTION "MINUS") (Raw "DYN_REC_STOP") "APPLICATION")
   }
 
 gameLeft = Side
