@@ -10,13 +10,8 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD,
-  DYNAMIC_MACRO_RANGE, // must be last
 };
 
-// must be after DYNAMIC_MACRO_RANGE
-#include "dynamic_macro.h"
-
-// must be after the macro stuff
 #include "saep_generated.c"
 
 const uint16_t PROGMEM fn_actions[] = {
@@ -43,9 +38,6 @@ void matrix_init_user(void) {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (!process_record_dynamic_macro(keycode, record)) {
-    return false;
-  }
   switch (keycode) {
     // dynamically generate these.
     case EPRM:
