@@ -16,7 +16,6 @@ myKeyboard =
     [ Layer INSERT insertLeft insertRight,
       Layer GAME gameLeft gameRight,
       Layer MOUSE mouseLeft mouseRight,
-      Layer XMONAD xmonadLeft xmonadRight,
       Layer NUMPAREN numParenLeft numParenRight,
       Layer NORMAL normalLeft normalRight,
       Layer FUNCTION functionLeft functionRight
@@ -52,7 +51,7 @@ insertLeft = Side
         (LCTL "V")
         (LT NORMAL "SPACE")
         (GUI_T "ESCAPE")
-        (TT XMONAD),
+        (LGUI "A"),
     rows =
       Rows
         oneToFive
@@ -117,7 +116,7 @@ mouseLeft = Side
         (LCTL "V")
         (LT NORMAL "SPACE")
         (TO INSERT)
-        (MO XMONAD),
+        (LGUI "A"),
     rows =
       Rows
         no
@@ -145,46 +144,6 @@ mouseRight = Side
         (Row TP "KP_4" "KP_5" "KP_6" TP)
         (Row TP "KP_1" "KP_2" "KP_3" TP)
         (Row "KP_0" "KP_DOT" "KP_COMMA" TP "APPLICATION")
-  }
-
-xmonadLeft = Side
-  { wide = Wide (TO MOUSE) (LGUI "TAB") "LCTRL" "LSHIFT",
-    inner = inner insertLeft,
-    thumbKeys =
-      ThumbLeft
-        NO
-        NO
-        NO
-        (LT NORMAL "SPACE")
-        (TO INSERT)
-        TP,
-    rows =
-      Rows
-        no
-        (Row (LGUI "Q") (LGUI "W") (LGUI "E") NO (LGUI "T"))
-        (Row (LGUI "1") (LGUI "2") (LGUI "3") (LGUI "4") (LGUI "5"))
-        (Row NO NO (LGUI "C") (LGUI "RBRACKET") (LGUI "B"))
-        (Row NO NO NO NO "LALT")
-  }
-
-xmonadRight = Side
-  { wide = Wide (TO MOUSE) "TAB" "LCTRL" "LSHIFT",
-    inner = Inner NO (LGUI "F4") (LGUI "F3"),
-    thumbKeys =
-      ThumbRight
-        (LGUI "LEFT")
-        (LGUI "RIGHT")
-        (LGUI "UP")
-        (LGUI "DOWN")
-        (LGUI "B")
-        (LGUI "T"),
-    rows =
-      Rows
-        no
-        (Row NO NO (LGUI "I") NO NO)
-        (Row (LGUI "6") (LGUI "7") (LGUI "8") (LGUI "9") (LGUI "0"))
-        no
-        (Row (LGUI "SPACE") NO NO NO NO)
   }
 
 numParenLeft = Side
@@ -283,7 +242,6 @@ data LayerId
   = INSERT
   | MOUSE
   | GAME
-  | XMONAD
   | NUMPAREN
   | NORMAL
   | FUNCTION
