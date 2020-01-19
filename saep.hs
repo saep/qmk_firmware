@@ -1,8 +1,8 @@
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+
 #!/usr/bin/env stack
 -- stack --resolver lts-14.19 --no-nix-pure script --package shake --package rio
-
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE NoImplicitPrelude #-}
 
 import Data.String
 import Development.Shake
@@ -162,7 +162,7 @@ numParenLeft = Side
         no
         (Row "EXLM" "AT" "HASH" "DLR" "PERC")
         oneToFive
-        (Row "MINUS" "PLUS" "GRAVE" "DQUO" NO)
+        (Row "MINUS" "PLUS" "GRAVE" "DQUO" "UNDS")
         (Row NO NO NO TP NO)
   }
 
@@ -182,7 +182,7 @@ numParenRight = Side
         no
         (Row "CIRC" "AMPR" "ASTERISK" "GRAVE" "TILD")
         sixToZero
-        (Row NO "QUOTE" NO "EQUAL" "UNDS")
+        (Row NO "QUOTE" "EQUAL" "LT" "GT")
         (Row "BSPACE" NO NO NO NO)
   }
 
