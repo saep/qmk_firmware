@@ -1,8 +1,8 @@
+#!/usr/bin/env stack
+-- stack --resolver lts-14.20 --no-nix-pure script --package shake --package rio
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-#!/usr/bin/env stack
--- stack --resolver lts-14.19 --no-nix-pure script --package shake --package rio
 
 import Data.String
 import Development.Shake
@@ -10,6 +10,8 @@ import RIO hiding (Ordering (..))
 import qualified RIO.List as List
 import qualified RIO.Map as Map
 import qualified RIO.Map as Map
+
+-- teensy-loader-cli -w --mcu=atmega32u4 saep.hex
 
 myKeyboard =
   KeyBoard
