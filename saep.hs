@@ -184,7 +184,7 @@ numParenRight = Side
         no
         (Row "CIRC" "AMPR" "ASTERISK" "GRAVE" "TILD")
         sixToZero
-        (Row NO "QUOTE" "EQUAL" "LT" "GT")
+        (Row NO "QUOTE" "LT" "GT" "EQUAL")
         (Row "BSPACE" NO NO NO NO)
   }
 
