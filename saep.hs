@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-14.20 --no-nix-pure script --package shake --package rio
+-- stack --resolver lts-16.26 --no-nix-pure script --package shake --package rio
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -45,7 +45,7 @@ f8tof12 = Row "F8" "F9" "F10" "F11" "F12"
 
 insertLeft = Side
   { wide = Wide (TG MOUSE) "TAB" "LCTRL" "LSHIFT",
-    inner = Inner (Raw "DYN_MACRO_PLAY1") (Raw "LGUI(KC_F1)") (Raw "LGUI(KC_F2)"),
+    inner = Inner (Raw "DYN_MACRO_PLAY1") "F13" "F14",
     thumbKeys =
       ThumbLeft
         (LCTL "X")
@@ -65,7 +65,7 @@ insertLeft = Side
 
 insertRight = Side
   { wide = Wide "BSPACE" "BSLASH" (Raw "RCTL_T(KC_ENTER)") "RSHIFT",
-    inner = Inner (Raw "DYN_MACRO_PLAY2") (LGUI "P") (TG GAME),
+    inner = Inner (Raw "DYN_MACRO_PLAY2") "F15" (TG GAME),
     thumbKeys =
       ThumbRight
         (LALT "LEFT")
